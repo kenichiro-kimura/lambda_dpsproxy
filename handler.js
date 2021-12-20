@@ -12,7 +12,7 @@ var provisioningHost = 'global.azure-devices-provisioning.net'
 module.exports.hello = async (event,context) => {
   var idScope = process.env.PROVISIONING_IDSCOPE;
   var registrationId = context.clientContext.imsi
-  var symmetricKey = process.env.PROVISIONING_SYMMETRIC_KEY;
+  var symmetricKey = process.env[`PROVISIONING_SYMMETRIC_KEY_${registrationId}`];
 
   var provisioningSecurityClient = new SymmetricKeySecurityClient(registrationId, symmetricKey);
   
